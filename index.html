@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>XYZ Home Decor - Transform Your Space, Enhance Your Life</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Base Reset & Variables */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        :root {
+            --bg-light: #f7f4ef;
+            --bg-card: #f1ebd9;
+            --bg-dark: #1e1e1e;
+            --text-dark: #2b2b2b;
+            --text-muted: #666666;
+            --gold-accent: #c49a50;
+            --gold-button: #bd8e42;
+            --border-color: #e5dec9;
+        }
+
+        body {
+            background-color: var(--bg-light);
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* Reusable Components */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .section-tag {
+            font-size: 11px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 8px;
+        }
+
+        .section-tag::after {
+            content: "";
+            display: inline-block;
+            width: 30px;
+            height: 1px;
+            background-color: var(--text-muted);
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 10px 22px;
+            border-radius: 3px;
+            font-size: 13px;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-gold {
+            background-color: var(--gold-button);
+            color: #fff;
+            border: none;
+        }
+
+        .btn-gold:hover {
+            background-color: #a37833;
+        }
+
+        .btn-dark {
+            background-color: #000;
+            color: #fff;
+            border: none;
+        }
+
+        .btn-dark:hover {
+            background-color: #333;
+        }
+
+        .btn-outline {
+            border: 1px solid #ccc;
+            background: transparent;
+            color: var(--text-dark);
+        }
+
+        .btn-outline:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+
+        /* Navigation Header */
+        header {
+            background-color: var(--bg-light);
+            padding: 15px 0;
+            border-bottom: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .logo-icon {
+            font-size: 20px;
+            color: #555;
+        }
+
+        .logo-text h1 {
+            font-size: 18px;
+            letter-spacing: 1px;
+            line-height: 1;
+            font-weight: 700;
+        }
+
+        .logo-text span {
+            font-size: 8px;
+            letter-spacing: 1.5px;
+            color: var(--text-muted);
+            display: block;
+        }
+
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 25px;
+        }
+
+        nav ul li a {
+            font-size: 13px;
+            color: #555;
+            transition: color 0.3s;
+        }
+
+        nav ul li a:hover {
+            color: #000;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 40px 0 60px 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.8fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .hero-content h2 {
+            font-size: 42px;
+            line-height: 1.15;
+            font-weight: 400;
+            margin: 15px 0;
+            color: #1a1a1a;
+        }
+
+        .hero-content p {
+            font-size: 13px;
+            color: var(--text-muted);
+            margin-bottom: 25px;
+            max-width: 320px;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            object-fit: cover;
+        }
+
+        /* Services Section */
+        .services {
+            padding: 50px 0;
+        }
+
+        .services-header {
+            margin-bottom: 30px;
+        }
+
+        .services-header h2 {
+            font-size: 28px;
+            font-weight: 500;
+            margin-bottom: 5px;
+        }
+
+        .services-header p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            background-color: var(--bg-card);
+            border-radius: 4px;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .service-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+        }
+
+        .service-card-body {
+            padding: 20px;
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+        }
+
+        .service-icon {
+            font-size: 20px;
+            color: #555;
+            margin-bottom: 10px;
+        }
+
+        .service-card h3 {
+            font-size: 16px;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+
+        .service-card p {
+            font-size: 12px;
+            color: var(--text-muted);
+            margin-bottom: 15px;
+            flex-grow: 1;
+        }
+
+        .service-card .learn-more {
+            font-size: 12px;
+            font-weight: 600;
+            color: var(--text-dark);
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+        }
+
+        /* Why Choose Us */
+        .why-us {
+            background-color: #1a1a1a;
+            color: #fff;
+            padding: 60px 0;
+            background-image: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&w=1200&q=80');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .why-us-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.5fr;
+            gap: 40px;
+            align-items: center;
+        }
+
+        .why-us-title h2 {
+            font-size: 32px;
+            font-weight: 400;
+            line-height: 1.2;
+            margin-top: 10px;
+        }
+
+        .why-us-features {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .feature-item {
+            display: flex;
+            gap: 15px;
+            align-items: flex-start;
+        }
+
+        .feature-icon {
+            background-color: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.2);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 16px;
+            color: var(--gold-accent);
+            flex-shrink: 0;
+        }
+
+        .feature-text h4 {
+            font-size: 14px;
+            font-weight: 600;
+            margin-bottom: 4px;
+        }
+
+        .feature-text p {
+            font-size: 11px;
+            color: #aaa;
+        }
+
+        /* Gallery Section */
+        .gallery {
+            padding: 60px 0;
+        }
+
+        .gallery-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-end;
+            margin-bottom: 25px;
+        }
+
+        .gallery-top h2 {
+            font-size: 28px;
+            font-weight: 500;
+            margin-top: 5px;
+        }
+
+        .gallery-top p {
+            font-size: 13px;
+            color: var(--text-muted);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 15px;
+        }
+
+        .gallery-item {
+            position: relative;
+            border-radius: 4px;
+            overflow: hidden;
+            height: 180px;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .gallery-item-label {
+            position: absolute;
+            bottom: 10px;
+            left: 10px;
+            background-color: rgba(0, 0, 0, 0.6);
+            color: #fff;
+            padding: 4px 10px;
+            font-size: 11px;
+            border-radius: 2px;
+            backdrop-filter: blur(2px);
+        }
+
+        /* Contact Section */
+        .contact {
+            padding: 50px 0;
+            background-color: var(--bg-light);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.3fr;
+            gap: 40px;
+            background-color: #e2dbcc;
+            border-radius: 6px;
+            overflow: hidden;
+        }
+
+        .contact-info {
+            background-image: linear-gradient(rgba(0,0,0,0.85), rgba(0,0,0,0.85)), url('https://images.unsplash.com/photo-1586023492125-27b2c045efd7?auto=format&fit=crop&w=600&q=80');
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .contact-info h2 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 25px;
+            line-height: 1.3;
+        }
+
+        .contact-details {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 12px;
+            color: #ccc;
+        }
+
+        .contact-item i {
+            color: #fff;
+            margin-top: 3px;
+            width: 15px;
+        }
+
+        .contact-form-container {
+            padding: 40px;
+            background-color: #f3efe6;
+        }
+
+        .contact-form-container h3 {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .contact-form-container p {
+            font-size: 11px;
+            color: var(--text-muted);
+            margin-bottom: 20px;
+        }
+
+        .form-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin-bottom: 15px;
+        }
+
+        .form-group {
+            margin-bottom: 15px;
+        }
+
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 8px 12px;
+            border: 1px solid #d0c8b6;
+            background-color: rgba(255,255,255,0.7);
+            border-radius: 3px;
+            font-size: 12px;
+            color: #333;
+            outline: none;
+        }
+
+        .form-group textarea {
+            height: 70px;
+            resize: none;
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--bg-dark);
+            color: #888;
+            padding: 20px 0;
+            font-size: 11px;
+            border-top: 1px solid #222;
+        }
+
+        .footer-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .footer-brand {
+            color: #fff;
+            font-weight: bold;
+        }
+
+        .footer-nav {
+            display: flex;
+            gap: 15px;
+        }
+
+        .footer-socials {
+            display: flex;
+            gap: 10px;
+        }
+
+        .footer-socials a {
+            color: #888;
+            font-size: 12px;
+        }
+
+        .footer-socials a:hover {
+            color: #fff;
+        }
+
+        /* Responsive Adjustments */
+        @media (max-width: 900px) {
+            .hero-grid, .why-us-grid, .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .services-grid, .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (max-width: 600px) {
+            .services-grid, .gallery-grid, .why-us-features {
+                grid-template-columns: 1fr;
+            }
+            .nav-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Navbar -->
+    <header>
+        <div class="container nav-container">
+            <div class="logo">
+                <i class="fa-solid fa-house-chimney logo-icon"></i>
+                <div class="logo-text">
+                    <h1>XYZ</h1>
+                    <span>HOME DECOR</span>
+                </div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About Us</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Gallery</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+            <a href="#" class="btn btn-dark">Get a Quote <i class="fa-regular fa-comment"></i></a>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container hero-grid">
+            <div class="hero-content">
+                <div class="section-tag">XYZ HOME DECOR</div>
+                <h2>Transform Your Space, Enhance Your Life</h2>
+                <p>Premium home décor solutions designed to bring comfort, style and elegance to your living spaces. From sofas to mattresses, we create spaces you'll love.</p>
+                <a href="#" class="btn btn-gold">Explore Our Services &rarr;</a>
+            </div>
+            <div class="hero-image">
+                <img src="https://images.unsplash.com/photo-1616486338812-3dadae4b4ace?auto=format&fit=crop&w=1000&q=80" alt="Modern Living Room Decor">
+            </div>
+        </div>
+    </section>
+
+    <!-- Our Services Section -->
+    <section class="services">
+        <div class="container">
+            <div class="services-header">
+                <div class="section-tag">OUR SERVICES</div>
+                <h2>Style, Comfort & Quality</h2>
+                <p>We offer a wide range of home decor services to make your home more beautiful, comfortable and functional.</p>
+            </div>
+            <div class="services-grid">
+                <!-- Card 1 -->
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1555041469-a586c61ea9bc?auto=format&fit=crop&w=500&q=80" alt="Sofa Decor">
+                    <div class="service-card-body">
+                        <i class="fa-solid fa-couch service-icon"></i>
+                        <h3>Sofa</h3>
+                        <p>Stylish, comfortable and durable sofas to suit every home and lifestyle.</p>
+                        <a href="#" class="learn-more">Learn More &rarr;</a>
+                    </div>
+                </div>
+                <!-- Card 2 -->
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1505693416388-ac5ce068fe85?auto=format&fit=crop&w=500&q=80" alt="Headboard Decor">
+                    <div class="service-card-body">
+                        <i class="fa-solid fa-bed service-icon"></i>
+                        <h3>Headboard</h3>
+                        <p>Elegant headboards that add a touch of luxury to your bedroom.</p>
+                        <a href="#" class="learn-more">Learn More &rarr;</a>
+                    </div>
+                </div>
+                <!-- Card 3 -->
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=500&q=80" alt="Curtains Decor">
+                    <div class="service-card-body">
+                        <i class="fa-solid fa-border-all service-icon"></i>
+                        <h3>Curtains</h3>
+                        <p>Beautiful curtains for the perfect blend of style, privacy and light control.</p>
+                        <a href="#" class="learn-more">Learn More &rarr;</a>
+                    </div>
+                </div>
+                <!-- Card 4 -->
+                <div class="service-card">
+                    <img src="https://images.unsplash.com/photo-1631049307264-da0ec9d70304?auto=format&fit=crop&w=500&q=80" alt="Mattress Decor">
+                    <div class="service-card-body">
+                        <i class="fa-solid fa-mattress-pillow service-icon"></i>
+                        <h3>Mattress</h3>
+                        <p>Premium mattresses for better sleep and a healthier tomorrow.</p>
+                        <a href="#" class="learn-more">Learn More &rarr;</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-us">
+        <div class="container why-us-grid">
+            <div class="why-us-title">
+                <div class="section-tag" style="color: #aaa;">WHY CHOOSE US</div>
+                <h2>Your Dream Home,<br>Our Priority</h2>
+            </div>
+            <div class="why-us-features">
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-pencil"></i></div>
+                    <div class="feature-text">
+                        <h4>Custom Designs</h4>
+                        <p>Tailored to your style and space.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-gem"></i></div>
+                    <div class="feature-text">
+                        <h4>Premium Quality</h4>
+                        <p>Only the best materials for lasting comfort.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-indian-rupee-sign"></i></div>
+                    <div class="feature-text">
+                        <h4>Affordable Pricing</h4>
+                        <p>Luxury looks without the high cost.</p>
+                    </div>
+                </div>
+                <div class="feature-item">
+                    <div class="feature-icon"><i class="fa-solid fa-wrench"></i></div>
+                    <div class="feature-text">
+                        <h4>Professional Installation</h4>
+                        <p>Hassle-free and reliable service.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="gallery">
+        <div class="container">
+            <div class="gallery-top">
+                <div>
+                    <div class="section-tag">OUR GALLERY</div>
+                    <h2>Real Homes. Real Transformations.</h2>
+                    <p>Take a look at some of our recent projects and get inspired for your own space.</p>
+                </div>
+                <a href="#" class="btn btn-outline">View More Gallery &rarr;</a>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1583847268964-b28dc8f51f92?auto=format&fit=crop&w=400&q=80" alt="Sofa Designs">
+                    <div class="gallery-item-label">Sofa Designs</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1540518614846-7eded433c457?auto=format&fit=crop&w=400&q=80" alt="Headboard Styles">
+                    <div class="gallery-item-label">Headboard Styles</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1513694203232-719a280e022f?auto=format&fit=crop&w=400&q=80" alt="Curtain Collections">
+                    <div class="gallery-item-label">Curtain Collections</div>
+                </div>
+                <div class="gallery-item">
+                    <img src="https://images.unsplash.com/photo-1582582621959-48d273528920?auto=format&fit=crop&w=400&q=80" alt="Mattress Solutions">
+                    <div class="gallery-item-label">Mattress Solutions</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact">
+        <div class="container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <div class="section-tag" style="color:#aaa;">GET IN TOUCH</div>
+                    <h2>Let's Create Your<br>Dream Space Together</h2>
+                    <div class="contact-details">
+                        <div class="contact-item">
+                            <i class="fa-solid fa-phone"></i>
+                            <span>+91 98765 43210</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa-brands fa-whatsapp"></i>
+                            <span>Chat on WhatsApp</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa-solid fa-location-dot"></i>
+                            <span>123, Comfort Lane, Green Park,<br>Mumbai - 400016</span>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fa-regular fa-envelope"></i>
+                            <span>info@xyzhomedecor.com</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="contact-form-container">
+                    <h3>Send Us a Message</h3>
+                    <p>Have a question or want a custom quote? Fill out the form and we'll get back to you soon.</p>
+                    <form>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" placeholder="Your Name">
+                            </div>
+                            <div class="form-group">
+                                <input type="email" placeholder="Your Email">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <input type="text" placeholder="Phone Number">
+                            </div>
+                            <div class="form-group">
+                                <select>
+                                    <option value="" disabled selected>Select Service</option>
+                                    <option value="sofa">Sofa</option>
+                                    <option value="headboard">Headboard</option>
+                                    <option value="curtains">Curtains</option>
+                                    <option value="mattress">Mattress</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <textarea placeholder="Your Message"></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-dark">Send Message &rarr;</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container footer-container">
+            <div>
+                <span class="footer-brand">XYZ HOME DECOR</span>
+                <span style="font-size: 10px; opacity: 0.7; margin-left: 5px;">Designing Beautiful Living Spaces</span>
+            </div>
+            <div class="footer-nav">
+                <a href="#">Home</a>
+                <a href="#">About Us</a>
+                <a href="#">Services</a>
+                <a href="#">Gallery</a>
+                <a href="#">Contact</a>
+            </div>
+            <div class="footer-socials">
+                <a href="#"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="#"><i class="fa-brands fa-instagram"></i></a>
+                <a href="#"><i class="fa-brands fa-whatsapp"></i></a>
+                <a href="#"><i class="fa-brands fa-youtube"></i></a>
+            </div>
+        </div>
+        <div style="text-align: center; margin-top: 15px; opacity: 0.5; font-size: 10px;">
+            &copy; 2025 XYZ Home Decor. All rights reserved.
+        </div>
+    </footer>
+
+</body>
+</html>
